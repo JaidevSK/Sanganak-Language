@@ -1,0 +1,2 @@
+argv len 1 > { argv 1 nth } { "y" } if
+{ dup print } forever

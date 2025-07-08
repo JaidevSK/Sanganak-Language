@@ -1,0 +1,2 @@
+{ print } [ 2 3 5 7 ] foreach
+{ inc print } [ 2 3 5 7 ] foreach

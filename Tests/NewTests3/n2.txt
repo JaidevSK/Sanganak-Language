@@ -1,0 +1,5 @@
+{ x y + print } 'foo def
+{ { 1 } 'x def { 2 } 'y def foo } 'bar def
+bar
+
+print

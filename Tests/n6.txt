@@ -1,0 +1,18 @@
+{ "Hello" print }
+"Nothing Printed" print
+{ "Hello" print } run
+
+get 0 >
+{ "Positive" print }
+{ "Not positive" print }
+if
+
+true
+{ "I am TRUE" print }
+{ "I am FALSE" print }
+if
+
+false
+{ "I am TRUE" print }
+{ "I am FALSE" print }
+if

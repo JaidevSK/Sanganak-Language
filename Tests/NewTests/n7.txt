@@ -1,0 +1,2 @@
+[ pop ]
+[ 1 2 pop pop pop 1 2 3 ]

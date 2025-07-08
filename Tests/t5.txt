@@ -1,0 +1,3 @@
+"Enter first number: " put -12.1.0
+"Enter second number: " put -
+"Their sum is: " put + put

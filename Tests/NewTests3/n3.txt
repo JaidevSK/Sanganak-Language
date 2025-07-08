@@ -1,0 +1,2 @@
+{ dup 0 = { pop 1 } { dup dec fact * } if } 'fact def
+5 fact print

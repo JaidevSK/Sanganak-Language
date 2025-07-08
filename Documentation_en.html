@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanganak Language</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Fira+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Colourful theme */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f0f8ff 0%, #e0e7ff 100%);
+            color: #22223b;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #6a4c93 0%, #1985a1 100%);
+            color: #fff;
+            padding: 2rem 1rem 1rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid #f7b801;
+        }
+
+        h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: #6a4c93;
+            margin-top: 2rem;
+            border-bottom: 2px solid #f7b801;
+            padding-bottom: 0.25rem;
+        }
+
+        h3 {
+            color: #1985a1;
+            margin-top: 1.5rem;
+        }
+
+        nav {
+            background: #f7b801;
+            padding: 1rem;
+            border-bottom: 2px solid #6a4c93;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #22223b;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #6a4c93;
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(106, 76, 147, 0.08);
+            padding: 2rem 2.5rem;
+        }
+
+        ul,
+        ol {
+            margin-left: 2rem;
+        }
+
+        code,
+        pre {
+            background: #e0e7ff;
+            color: #22223b;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            border-radius: 6px;
+            padding: 0.2em 0.5em;
+            font-size: 1em;
+        }
+
+        pre {
+            display: block;
+            padding: 1em;
+            margin: 1em 0;
+            overflow-x: auto;
+            background: #f0f8ff;
+            border-left: 4px solid #6a4c93;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+            background: #f8fafc;
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 0.5em 1em;
+            text-align: left;
+        }
+
+        th {
+            background: #e0e7ff;
+            color: #6a4c93;
+        }
+
+        blockquote {
+            background: #e0e7ff;
+            border-left: 5px solid #1985a1;
+            margin: 1.5em 0;
+            padding: 1em 1.5em;
+            color: #444;
+            font-style: italic;
+        }
+
+        .keyword {
+            color: #f7b801;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem 0.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Sanganak Language</h1>
+        <a href="Documentation_mr.html" style="float: right; color: #fff; background: #6a4c93; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; font-weight: bold;">मराठी</a>
+        <p></p>
+    </br>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#about-language">About the Sanganak Language</a></li>
+            <li><a href="#language-philosophy">Language Philosophy and Model</a></li>
+            <li><a href="#lexical-structure">Lexical Structure</a></li>
+            <li><a href="#syntax-parser">Syntax and Parser Overview</a></li>
+            <li><a href="#data-types">Data Types</a></li>
+            <li><a href="#built-in-operations">Built-in Operations</a></li>
+            <li><a href="#stack-manipulation">Stack Manipulation</a></li>
+            <li><a href="#arithmetic-operators">Arithmetic Operators</a></li>
+            <li><a href="#boolean-operators">Boolean Operators</a></li>
+            <li><a href="#comparison-operators">Comparison Operators</a></li>
+            <li><a href="#string-operations">String Operations</a></li>
+            <li><a href="#list-operations">List Operations</a></li>
+            <li><a href="#i-o-operations">I/O Operations</a></li>
+            <li><a href="#control-flow">Control Flow</a></li>
+            <li><a href="#function-definition">Function Definition and Invocation</a></li>
+            <li><a href="#type-querying">Type Querying</a></li>
+            <li><a href="#symbols">Symbols</a></li>
+            <li><a href="#command-line-arguments">Command-line Arguments</a></li>
+            <li><a href="#error-handling">Error Handling</a></li>
+            <li><a href="#extending-language">Extending the Language</a></li>
+            <li><a href="#example-programs">Example Programs</a></li>
+            <li><a href="#reserved-words">Non-Allowed Keywords and Reserved Words</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>This documentation describes the <strong>Sanganak</strong> language—a stack-based programming language—and its
+                compiler.
+                The goal is to help new programmers quickly learn the language, understand its design principles, and master
+                its
+                various constructs.</p>
+            <p>The language is implemented by a compiler written in Python. Its core components include a lexer, a parser,
+                and runtime support for common operations.</p>
+        </section>
+
+        <section id="about-language">
+            <h2>About the Sanganak Language</h2>
+            <p>In this exercise, we will design a Forth-like language. This language has the following elements:</p>
+            <ul>
+                <li>Numbers (with decimal point): <code>42</code>, <code>42.5</code>.</li>
+                <li>Strings: <code>"Hello, World!"</code></li>
+                <li>Words: Everything else without spaces. Example: <code>get</code>, <code>put</code>, <code>+</code>. The
+                    following are not
+                    words: <code>2a</code>, <code>"aa</code>.</li>
+            </ul>
+            <p>A program is a sequence of elements separated by whitespace. The language has a postfix syntax and uses a
+                stack for evaluation. The following program prints <code>5</code> to screen.</p>
+            <pre><code>2 3 + put</code></pre>
+            <p>Numbers or strings are pushed to the stack. Words correspond to operations. They take arguments by popping
+                the
+                stack and pushes result back into stack.</p>
+            <p>The following reads two numbers and prints their sum.</p>
+            <pre><code>get get + put</code></pre>
+            <p>For every k-ary operator, the top element is the last argument, the one below top is the second-last argument
+                and
+                so on. The following prints <code>5</code>.</p>
+            <pre><code>10 2 / put</code></pre>
+            <p>We will denote a stack S by x y ... where x is the top element. We use x S to denote a stack where x is the
+                top
+                element with some arbitrary elements S under it.</p>
+            <h3>Implemented Interpreter Words:</h3>
+            <ul>
+                <li><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code> for arithmetic.</li>
+                <li><code>get</code> for reading a value (number or string from input) from keyboard. The read value is pushed
+                    to
+                    stack.</li>
+                <li><code>put</code> for printing a value (followed by newline) to screen.</li>
+                <li><code>pop</code> for removing top element from stack.</li>
+                <li><code>dup</code> for turning stack from x S to x x S.</li>
+                <li><code>rot</code> for turning stack from x y S to y x S.</li>
+                <li><code>concat</code> for concatenating two strings.</li>
+            </ul>
+            <p>Here's a program that queries two numbers from input and outputs their sum.</p>
+            <pre><code>"Enter first number: " put get
+        "Enter second number: " put get
+        "Their sum is: " put + put</code></pre>
+        </section>
+
+        <section id="language-philosophy">
+            <h2>Language Philosophy and Model</h2>
+            <ul>
+                <li><strong>Stack-Centric:</strong> All values (numbers, strings, booleans, lists, and symbols) are maintained
+                    on a
+                    stack. Operations pop arguments from the stack and push back their results.</li>
+                <li><strong>Minimal Syntax:</strong> Commands and procedures are defined as “words” (tokens), which get
+                    interpreted based on their type.</li>
+                <li><strong>Postfix Syntax:</strong> Operators follow their operands.</li>
+                <li><strong>Procedural Execution:</strong> Code blocks (stored procedures) can be defined with delimiters and
+                    executed later.</li>
+                <li><strong>Extensibility:</strong> The language supports user-defined functions (via the <code>def</code>
+                    command)
+                    and global variables to allow gradual program development.</li>
+            </ul>
+        </section>
+
+        <section id="lexical-structure">
+            <h2>Lexical Structure</h2>
+            <p>The compiler uses a lexer that reads the source code string and produces a list of tokens. Here are the token
+                types:</p>
+            <h3>Numeric Tokens:</h3>
+            <ul>
+                <li><strong>NumberToken:</strong> A sequence of digits (e.g. <code>42</code>).</li>
+                <li><strong>NegNumberToken:</strong> A negative integer using a <code>-</code> sign (e.g. <code>-42</code>).</li>
+                <li><strong>DecimalNumberToken:</strong> A floating‑point number (e.g. <code>3.14</code>).</li>
+                <li><strong>NegDecimalNumberToken:</strong> A negative decimal (e.g. <code>-3.14</code>).</li>
+            </ul>
+            <h3>String Tokens:</h3>
+            <ul>
+                <li><strong>StringToken:</strong> Enclosed in double quotes (e.g. <code>"Hello World"</code>). The lexer allows
+                    escaped quotes.</li>
+            </ul>
+            <h3>Boolean Tokens:</h3>
+            <ul>
+                <li><strong>BoolToken:</strong> The words <code>true</code> or <code>false</code> are read as booleans.</li>
+            </ul>
+            <h3>Symbol Tokens:</h3>
+            <ul>
+                <li><strong>SymbolToken:</strong> Defined by a preceding single quote (e.g. <code>'symbol</code>).</li>
+            </ul>
+            <h3>Word Tokens:</h3>
+            <ul>
+                <li><strong>WordToken:</strong> Represents commands, function names, or other reserved words.</li>
+            </ul>
+            <p>The lexer also enforces spacing and newline rules. For example, after a number token, it ensures that stop
+                conditions (whitespace or end-of-line) are present.</p>
+        </section>
+
+        <section id="syntax-parser">
+            <h2>Syntax and Parser Overview</h2>
+            <p><strong>Sanganak’s</strong> parser uses a recursive approach to scan through the token list. Here’s an outline:</p>
+            <h3>Initialization:</h3>
+            <p>The parser is initialized with the list of tokens and an optional argument list. It maintains:</p>
+            <ul>
+                <li>A pointer (<code>i</code>) into the token list.</li>
+                <li>An execution stack (<code>stack</code>).</li>
+                <li>Global dictionaries (<code>functions</code> and <code>variables</code>) for user-defined functions and global
+                    variables.</li>
+            </ul>
+            <h3>Token-by-Token Parsing:</h3>
+            <p>The parser loops through the tokens and:</p>
+            <ul>
+                <li><strong>Pushes literals:</strong> Directly pushes numbers, strings, and booleans.</li>
+                <li><strong>Processes WordTokens:</strong> Depending on the value (the “<code>v</code>” field), the parser
+                    performs
+                    different operations—arithmetic, I/O, control flow, list manipulation, etc.</li>
+            </ul>
+            <h3>Procedures:</h3>
+            <p>Blocks of code can be delimited using <code>[</code> and <code>]</code> (for lists/procedures) or with <code>{</code>
+                and <code>}</code> (for stored procedures). The enclosed tokens are parsed recursively when executed.</p>
+            <h3>Operators and Functions:</h3>
+            <p>If a token does not match any built-in operation, the parser checks for user-defined functions or variables.
+                If
+                neither is found, an error is raised.</p>
+        </section>
+
+        <section id="data-types">
+            <h2>Data Types</h2>
+            <p>Sanganak supports the following fundamental data types:</p>
+            <ul>
+                <li><strong>Numbers:</strong> Integers (e.g., <code>42</code>, <code>-10</code>) and floating-point numbers (e.g.,
+                    <code>3.14</code>, <code>-0.5</code>).</li>
+                <li><strong>Strings:</strong> Sequences of characters enclosed in double quotes (e.g., <code>"Hello"</code>).</li>
+                <li><strong>Booleans:</strong> Logical values represented by the keywords <code>true</code> and <code>false</code>.
+                </li>
+                <li><strong>Lists:</strong> Ordered collections of values enclosed in square brackets (e.g.,
+                    <code>[1 2 "hello"]</code>).</li>
+                <li><strong>Symbols:</strong> Unique identifiers represented by a preceding single quote (e.g., <code>'name</code>).
+                </li>
+                <li><strong>Stored Procedures:</strong> Blocks of Sanganak code enclosed in curly braces (e.g., <code>{ dup * }</code>).
+                </li>
+            </ul>
+        </section>
+
+        <section id="built-in-operations">
+            <h2>Built-in Operations</h2>
+            <p>Sanganak provides a set of built-in words for various operations.</p>
+        </section>
+
+        <section id="stack-manipulation">
+            <h3>Stack Manipulation</h3>
+            <ul>
+                <li><strong><code>pop</code>:</strong> Removes the top element from the stack.</li>
+                <li><strong><code>dup</code>:</strong> Duplicates the top value of the stack (i.e. <code>x</code> becomes
+                    <code>[x, x]</code>).</li>
+                <li><strong><code>rot</code>:</strong> Rotates the top two stack items (swaps their order).</li>
+                <li><strong><code>concat</code>:</strong> Pops two strings, concatenates them, and pushes the result.</li>
+            </ul>
+        </section>
+
+        <section id="arithmetic-operators">
+            <h3>Arithmetic Operators</h3>
+            <ul>
+                <li><strong><code>+</code>: Addition</strong>
+                    <p>Pops two numbers from the stack. Asserts that the operands are <code>int</code> or <code>float</code> and
+                        pushes the sum.</p>
+                </li>
+                <li><strong><code>-</code>: Subtraction</strong>
+                    <p>Pops two numbers, subtracting the top element from the next, and pushes the result.</p>
+                </li>
+                <li><strong><code>*</code>: Multiplication</strong>
+                    <p>Pops two numeric values, multiplies them, and pushes the product.</p>
+                </li>
+                <li><strong><code>/</code>: Division</strong>
+                    <p>Pops two values; checks for non-zero divisor before performing division.</p>
+                </li>
+                <li><strong><code>^</code>: Exponentiation</strong>
+                    <p>Pops two numbers and computes the second token raised to the power of the first (with a check to avoid
+                        undefined cases).</p>
+                </li>
+            </ul>
+        </section>
+
+        <sectionid="boolean-operators">
+            <h3>Boolean and Comparison Operators</h3>
+            <h4>Boolean Logic:</h4>
+            <ul>
+            <li><strong><code>not</code>:</strong> Logical negation (pops one boolean and pushes its inverse).</li>
+            <li><strong><code>and</code>, <code>or</code>, <code>xor</code>:</strong> Logical operations that pop two booleans and push
+            the result.</li>
+            </ul>
+            <h4>Arithmetic Comparisons:</h4>
+            <ul>
+            <li><strong><code>=</code>:</strong> Compares two numbers for equality.</li>
+            <li><strong><code>!=</code>:</strong> Checks numerical inequality.</li>
+            <li><strong><code><</code>, <code>></code>, <code><=</code>, <code>>=</code>:</strong> Compare numeric values. (Note that
+            some
+            tokens like <code><</code> and <code>></code> may be implemented with inverted semantics on the
+            stack.)</li>
+            </ul>
+            <h4>String Comparisons:</h4>
+            <ul>
+            <li><strong><code>s=</code> and <code>s!=</code>:</strong> Test equality or inequality of two strings.</li>
+            </ul>
+            <h4>Lexicographic Comparisons:</h4>
+            <ul>
+            <li><strong><code>lex></code>, <code>lex<</code>, <code>lex>=</code>, <code>lex<=</code>:</strong> Compare strings
+            based on
+            lexicographic order.</li>
+            </ul>
+            <h4>Symbol Comparison:</h4>
+            <ul>
+            <li><strong><code>sym=</code>:</strong> Compares two symbols (<code>SymbolTokens</code>) for equality.</li>
+            <li><strong><code>is-symbol?</code>:</strong> Checks whether the top of the stack is a symbol.</li>
+            </ul>
+            </section>
+            <section id="string-operations">
+                <h3>String Operations</h3>
+                <ul>
+                    <li><strong><code>concat</code>:</strong> Pops two strings, concatenates them, and pushes the result.</li>
+                </ul>
+            </section>
+        
+            <section id="list-operations">
+                <h3>List Manipulation</h3>
+                <h4>List Creation and Access:</h4>
+                <ul>
+                    <li><strong><code>list</code>:</strong> Wraps the current stack into a list.</li>
+                    <li><strong><code>listn</code>:</strong> Pops an integer (<code>n</code>) and then pops <code>n</code> elements to
+                        form a list (the list is reversed before being pushed).</li>
+                    <li><strong><code>spread</code>:</strong> Pops a list and pushes each of its elements onto the stack.</li>
+                    <li><strong><code>nth</code>:</strong> Pops an integer index and a list; pushes the element at that index.</li>
+                    <li><strong><code>len</code>:</strong> Pops a list and pushes its length.</li>
+                </ul>
+            </section>
+        
+            <section id="i-o-operations">
+                <h3>I/O Operation</h3>
+                <ul>
+                    <li><strong><code>get</code>:</strong> Reads input from the user. The input is interpreted as a string, number,
+                        or
+                        boolean based on its format. For instance, a value wrapped in double quotes is recognized as a string.
+                    </li>
+                    <li><strong><code>put</code>:</strong> Prints the top element of the stack. For strings, it prints the content
+                        with
+                        proper formatting (handling escape sequences). After printing, it pops the printed value.</li>
+                    <li><strong><code>print</code>:</strong> Similar to <code>put</code>, but without surrounding quotes if the value is a
+                        string.</li>
+                </ul>
+            </section>
+        
+            <section id="control-flow">
+                <h2>Control Flow</h2>
+                <ul>
+                    <li><strong>Procedures (Code Blocks):</strong>
+                        <p>Procedures described within <code>[</code> and <code>]</code> or <code>{</code> and <code>}</code> are stored
+                            as
+                            lists of tokens. These code blocks are not executed until explicitly parsed (e.g. using
+                            <code>run</code>).</p>
+                    </li>
+                    <li><strong><code>run</code>:</strong>
+                        <p>Pops a procedure (a list of tokens) from the stack and executes it in a new parser context. The
+                            resulting
+                            stack is then merged with the current stack.</p>
+                    </li>
+                    <li><strong>Conditional Execution (<code>if</code>):</strong>
+                        <p>Expects three items on the stack: a condition (boolean), a “then” procedure, and an “else” procedure.
+                            Depending on the condition, the corresponding procedure gets executed.</p>
+                    </li>
+                    <li><strong><code>repeat</code>:</strong>
+                        <p>Pops an integer <code>n</code> and a procedure. The procedure is executed <code>n</code> times.</p>
+                    </li>
+                    <li><strong><code>while</code>:</strong>
+                        <p>Expects two procedures—a condition procedure and a body procedure. The condition procedure is executed
+                            and
+                            must produce a boolean. While true, the body is executed repeatedly. (Note: The parser makes copies
+                            of
+                            the stack for each loop iteration.)</p>
+                    </li>
+                    <li><strong><code>forever</code>:</strong>
+                        <p>Pops a procedure and enters an infinite loop executing it. <strong>Use with caution!</strong></p>
+                    </li>
+                    <li><strong><code>foreach</code>:</strong>
+                        <p>Pops two items: a list and a procedure. For each element in the list, the procedure is executed with
+                            that
+                            element pushed onto the stack.</p>
+                    </li>
+                </ul>
+            </section>
+        
+            <section id="function-definition">
+                <h2>Function Definition and Invocation</h2>
+                <ul>
+                    <li><strong>Defining Functions (<code>def</code>):</strong>
+                        <p>The <code>def</code> command is used to define a new function. It expects a <code>SymbolToken</code> (as
+                            the
+                            function name) and a procedure (code block as a list of tokens). The function is stored in a global
+                            dictionary.</p>
+                    </li>
+                    <li><strong>Invocation:</strong>
+                        <p>When a <code>WordToken</code> is encountered that matches a defined function’s name, its associated
+                            procedure
+                            is executed. The current stack, functions, and variables are inherited, ensuring consistent state
+                            between
+                            calls.</p>
+                    </li>
+                </ul>
+            </section>
+        
+            <section id="type-querying">
+                <h2>Type Querying</h2>
+                <ul>
+                    <li><strong><code>is-number?</code>:</strong>
+                        <p>Checks whether the top of the stack is a number (<code>int</code> or <code>float</code>).</p>
+                    </li>
+                    <li><strong><code>is-list?</code>:</strong>
+                        <p>Checks whether the top of the stack is a list.</p>
+                    </li>
+                    <li><strong><code>is-string?</code>:</strong>
+                        <p>Checks whether the top of the stack is a string.</p>
+                    </li>
+                    <li><strong><code>is-bool?</code>:</strong>
+                        <p>Checks whether the top of the stack is a boolean.</p>
+                    </li>
+                    <li><strong><code>is-symbol?</code>:</strong>
+                        <p>Checks whether the top of the stack is a symbol.</p>
+                    </li>
+                </ul>
+                <p>These commands help in writing conditional logic or debugging type issues in stack expressions.</p>
+            </section>
+        
+            <section id="symbols">
+                <h2>Symbols</h2>
+                <p>A symbol is a new data type representing a sequence of characters without whitespace. For lexical analysis,
+                    symbols
+                    are identified by a preceding single quote (<code>'</code>).</p>
+                <p>Two symbols are considered equal if and only if they consist of the exact same sequence of characters.</p>
+                <h3>Example:</h3>
+                <pre><code>'hello 'world 'good-bye</code></pre>
+                <h3>Symbol Operations:</h3>
+                <ul>
+                    <li><code>is-symbol?</code>: Pushes <code>true</code> onto the stack if the top element is a symbol, and
+                        <code>false</code>
+                        otherwise.</li>
+                    <li><code>sym=</code>: Pushes <code>true</code> onto the stack if the top two values are the same symbol, and
+                        <code>false</code> otherwise. Consumes both values from the stack.</li>
+                </ul>
+            </section>
+        
+            <section id="command-line-arguments">
+                <h2>Command-line Arguments</h2>
+                <p>The word <code>argv</code> pushes a list of command-line arguments (strings) onto the stack. The first element
+                    of
+                    the list is the name of the executable, and the subsequent elements are the arguments passed to the script.</p>
+                <h3>Example (Conceptual):</h3>
+                <p>If a script <code>echo.f</code> is run as <code>./run.sh echo.f "Hello, World"</code>, the <code>argv</code> word
+                    would
+                    push the list <code>["echo.f", "Hello, World"]</code> onto the stack.</p>
+                <h3>Example: <code>yes</code> command implementation</h3>
+                <pre><code>{ argv len 1 > } { argv 1 nth } { "y" } if { dup print } forever</code></pre>
+                    <p>This script (conceptual) checks if there's at least one command-line argument. If so, it takes the second
+                    argument
+                    and prints it forever. Otherwise, it prints "y" forever.</p>
+                    </section>
+                    
+                        <section id="error-handling">
+                            <h2>Error Handling</h2>
+                            <p>Throughout the parser, assertions play a key role:</p>
+                            <ul>
+                                <li><strong>Stack Underflow:</strong>
+                                    <p>Before performing operations that require one or more elements, the parser asserts the stack length is
+                                        sufficient. If the stack is empty, an “EMPTY STACK” error is raised.</p>
+                                </li>
+                                <li><strong>Invalid Operand Type:</strong>
+                                    <p>Each operator checks that operands are of the expected type (e.g., number, list, boolean). If not, an
+                                        "INVALID OPERAND TYPE" error is thrown.</p>
+                                </li>
+                                <li><strong>Edge Conditions:</strong>
+                                    <p>Division and exponentiation include checks such as division by zero and undefined negative exponent
+                                        cases.</p>
+                                </li>
+                            </ul>
+                            <p>Errors are reported immediately to simplify debugging.</p>
+                        </section>
+                    
+                        <section id="extending-language">
+                            <h2>Extending the Language</h2>
+                            <p>Because Sanganak uses a token-based design with an extensible parser:</p>
+                            <ul>
+                                <li><strong>User-Defined Functions:</strong>
+                                    <p>Functions can be added at runtime using <code>def</code>.</p>
+                                </li>
+                                <li><strong>Global Variables:</strong>
+                                    <p>Variables, stored in a global dictionary, allow persistent state between operations.</p>
+                                </li>
+                                <li><strong>Custom Procedures:</strong>
+                                    <p>The language design makes it straightforward to add new commands. You can modify the parser to
+                                        interpret
+                                        new tokens or constructs.</p>
+                                </li>
+                            </ul>
+                        </section>
+                        <section id="example-programs">
+                            <h2>Example Programs</h2>
+                            <h3>Simple Arithmetic</h3>
+                            <div class="example-code">
+                                <code>3 4 + put</code>
+                            </div>
+                            <p class="explanation">Explanation:</p>
+                            <ul>
+                                <li>Pushes <code>3</code> and <code>4</code> onto the stack.</li>
+                                <li><code>+</code> pops them, computes <code>7</code>, then pushes the result.</li>
+                                <li><code>put</code> prints the value.</li>
+                            </ul>
+                    
+                            <h3>List Creation and Iteration</h3>
+                            <div class="example-code">
+                                <code>1 2 3 list put</code>
+                            </div>
+                            <p class="explanation">Explanation:</p>
+                            <ul>
+                                <li>Pushes <code>1</code>, <code>2</code>, <code>3</code>.</li>
+                                <li><code>list</code> aggregates the entire current stack into a single list.</li>
+                                <li><code>put</code> prints the list.</li>
+                            </ul>
+                            <h3>Conditional and Loops</h3>
+                            <div class="example-code">
+                                <code>true [ "Then branch executed" put ] [ "Else branch executed" put ] if</code>
+                            </div>
+                            <p class="explanation">Explanation:</p>
+                            <ul>
+                                <li>Pushes a boolean <code>true</code> and two procedures (the “then” and “else” parts).</li>
+                                <li>The <code>if</code> command executes the corresponding procedure.</li>
+                            </ul>
+                    
+                            <h3>Factorial Calculation</h3>
+                            <div class="example-code">
+                                <code>{ { dup 0 = } { pop 1 } { dup dec 'fact call * } if } 'fact def
+                    
+                    5 fact print</code>
+                    </div>
+                    <p class="explanation">Explanation:</p>
+                    <ul>
+                    <li>Defines a recursive factorial function.</li>
+                    <li>Calls the function with the argument 5.</li>
+                    <li>Prints the result (120).</li>
+                    </ul>
+                    </section>
+                    <section id="reserved-words">
+                        <h2>Non-Allowed Keywords and Reserved Words</h2>
+                        <p>Sanganak reserves a set of keywords for its built-in operations. These keywords cannot be used by the
+                            programmer
+                            as the names of functions or variables. Attempting to redefine these may result in runtime exceptions or
+                            unexpected behavior. The reserved keywords include:</p>
+                        <ul>
+                            <li><strong>Stack Operations:</strong><br>
+                                <code>pop</code>, <code>dup</code>, <code>rot</code>, <code>concat</code></li>
+                            <li><strong>Arithmetic and Numeric Operations:</strong><br>
+                                <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code></li>
+                            <li><strong>Logical and Comparison Operators:</strong><br>
+                                <code>=</code>, <code>!=</code>, <code><</code>, <code>></code>, <code><=</code>, <code>>=</code>, <code>not</code>,
+                                <code>and</code>, <code>or</code>, <code>xor</code>,
+                                <code>b=</code>, <code>b!=</code>, <code>s=</code>, <code>s!=</code>, <code>lex></code>, <code>lex<</code>,
+                                <code>lex>=</code>, <code>lex<=</code></li>
+                            <li><strong>I/O Operations:</strong><br>
+                                <code>get</code>, <code>put</code>, <code>print</code></li>
+                            <li><strong>Procedure Delimiters:</strong><br>
+                                <code>[</code>, <code>]</code>, <code>{</code>, <code>}</code></li>
+                            <li><strong>List Operations:</strong><br>
+                                <code>list</code>, <code>listn</code>, <code>spread</code>, <code>nth</code>, <code>len</code></li>
+                            <li><strong>Control Flow Keywords:</strong><br>
+                                <code>if</code>, <code>run</code>, <code>repeat</code>, <code>while</code>, <code>forever</code>, <code>foreach</code>
+                            </li>
+                            <li><strong>Function Definition:</strong><br>
+                                <code>def</code></li>
+                                <li><strong>Increment/Decrement and Type Checking:</strong><br>
+                                    <code>inc</code>, <code>dec</code>, <code>is-number?</code>, <code>is-list?</code>, <code>is-string?</code>,
+                                    <code>is-bool?</code>, <code>is-symbol?</code>, <code>sym=</code></li>
+                                <li><strong>Boolean and Symbol Literals:</strong><br>
+                                    <code>true</code>, <code>false</code></li>
+                                <li><strong>Command-line Arguments:</strong><br>
+                                    <code>argv</code></li>
+                            </ul>
+                            <p class="important"><strong>Important:</strong><br>
+                                These keywords are hard-coded into the language's parser (<code>parser.py</code>) and lexer
+                                (<code>lexer.py</code>). They serve as the building blocks and control structure of the language. Any attempt
+                                to use these in user-defined names (via <code>def</code>) will lead to errors or may interfere with the normal
+                                execution of the parser. For instance, defining a function named <code>+</code> is not permitted because it
+                                overlaps with the built-in addition operator.
+                            </p>
+                        </section>
+                    
+                        <section id="conclusion">
+                            <h2>Conclusion</h2>
+                            <p>Sanganak is a minimal and expressive stack-based language that encourages programmers to think in terms of
+                                stack
+                                operations rather than named variables. The built-in operations cover arithmetic, I/O, list manipulations,
+                                control flow, and now includes symbols and function definitions. With support for user-defined functions and
+                                robust error handling, the language serves as both an educational tool and a foundation for more complex
+                                operations.</p>
+                            <p>New users are encouraged to experiment with small snippets of code to become familiar with the stack model.
+                                The
+                                modular design of the lexer and parser also makes Sanganak ideal for extensions and further research.
+                            </p>
+                        </section>
+                    
+                    </main>
+                    
+                    </body>
+
+</html>

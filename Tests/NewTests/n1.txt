@@ -1,0 +1,5 @@
+true false and put
+true false or print
+true false xor put
+true not put
+get get and put

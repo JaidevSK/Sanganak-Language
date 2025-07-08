@@ -1,0 +1,7 @@
+1000 100 10 { dup 0 > } { dup print dec } while put put
+10 { dup 0 > } { dup put dec } while put 
+"NEGATIVE" print
+-10 { dup 0 > } { dup put dec } while put 
+"POSITIVE" print
+-10 { dup 0 < } { dup put inc } while put 
+

@@ -1,0 +1,1 @@
+0 { inc dup print } forever

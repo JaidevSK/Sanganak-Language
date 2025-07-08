@@ -1,0 +1,5 @@
+10 { "." print } repeat
+-1 0 >
+{ "Positive" print }
+{ "Not positive" print }
+if

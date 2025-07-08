@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संगणक भाषा  </title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Fira+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* रंगीबेरंगी थीम */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f0f8ff 0%, #e0e7ff 100%);
+            color: #22223b;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #6a4c93 0%, #1985a1 100%);
+            color: #fff;
+            padding: 2rem 1rem 1rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid #f7b801;
+        }
+
+        h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: #6a4c93;
+            margin-top: 2rem;
+            border-bottom: 2px solid #f7b801;
+            padding-bottom: 0.25rem;
+        }
+
+        h3 {
+            color: #1985a1;
+            margin-top: 1.5rem;
+        }
+
+        nav {
+            background: #f7b801;
+            padding: 1rem;
+            border-bottom: 2px solid #6a4c93;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #22223b;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #6a4c93;
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(106, 76, 147, 0.08);
+            padding: 2rem 2.5rem;
+        }
+
+        ul,
+        ol {
+            margin-left: 2rem;
+        }
+
+        code,
+        pre {
+            background: #e0e7ff;
+            color: #22223b;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            border-radius: 6px;
+            padding: 0.2em 0.5em;
+            font-size: 1em;
+        }
+
+        pre {
+            display: block;
+            padding: 1em;
+            margin: 1em 0;
+            overflow-x: auto;
+            background: #f0f8ff;
+            border-left: 4px solid #6a4c93;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+            background: #f8fafc;
+        }
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 0.5em 1em;
+            text-align: left;
+        }
+
+        th {
+            background: #e0e7ff;
+            color: #6a4c93;
+        }
+
+        blockquote {
+            background: #e0e7ff;
+            border-left: 5px solid #1985a1;
+            margin: 1.5em 0;
+            padding: 1em 1.5em;
+            color: #444;
+            font-style: italic;
+        }
+
+        .keyword {
+            color: #f7b801;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem 0.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>संगणक भाषा  </h1>
+        <a href="Documentation_en.html" style="float: right; color: #fff; background: #6a4c93; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; font-weight: bold;">English</a>
+        <p></p>
+    </br>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#introduction">परिचय</a></li>
+            <li><a href="#about-language">भाषेबद्दल</a></li>
+            <li><a href="#language-philosophy">भाषेची तत्वे आणि मॉडेल</a></li>
+            <li><a href="#lexical-structure">शब्दरचना</a></li>
+            <li><a href="#syntax-parser">वाक्यरचना आणि पार्सर अवलोकन</a></li>
+            <li><a href="#data-types">डेटा प्रकार</a></li>
+            <li><a href="#built-in-operations">अंतर्गत क्रिया</a></li>
+            <li><a href="#stack-manipulation">स्टॅक हाताळणी</a></li>
+            <li><a href="#arithmetic-operators">अंकगणितीय ऑपरेटर</a></li>
+            <li><a href="#boolean-operators">बूलियन ऑपरेटर आणि तुलना</a></li>
+            <li><a href="#string-operations">स्ट्रिंग क्रिया</a></li>
+            <li><a href="#list-operations">सूची हाताळणी</a></li>
+            <li><a href="#i-o-operations">इनपुट/आउटपुट क्रिया</a></li>
+            <li><a href="#control-flow">नियंत्रण प्रवाह</a></li>
+            <li><a href="#function-definition">फंक्शन व्याख्या व कॉल</a></li>
+            <li><a href="#type-querying">प्रकार तपासणी</a></li>
+            <li><a href="#symbols">चिन्हे</a></li>
+            <li><a href="#command-line-arguments">कमान्-लाइन तर्क</a></li>
+            <li><a href="#error-handling">त्रुटी हाताळणी</a></li>
+            <li><a href="#extending-language">भाषा विस्तार</a></li>
+            <li><a href="#example-programs">उदाहरण प्रोग्राम</a></li>
+            <li><a href="#reserved-words">प्रतिबंधित शब्द</a></li>
+            <li><a href="#conclusion">निष्कर्ष</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="introduction">
+            <h2>परिचय</h2>
+            <p>हे   <strong>संगणक</strong> भाषा – एक स्टॅक-केंद्रित प्रोग्रामिंग भाषा – याचे वर्णन करते. याचा उद्देश नवशिक्यांना ह्या भाषेची तत्त्वे, तिचा वापर आणि विविध संरचना समजावून देणे हा आहे.</p>
+            <p>ही भाषा पायथनमध्ये लिहिलेल्या संकलकाद्वारे अंमलात आणली गेली आहे. हिचे मुख्य घटक म्हणजे लेक्सर, पार्सर आणि विविध अंतर्गत क्रियांकरिता runtime समर्थन.</p>
+        </section>
+
+        <section id="about-language">
+            <h2>भाषेबद्दल</h2>
+            <p>या प्रकल्पाद्वारे आपण एक फोर्त-प्रकारची भाषा तयार करत आहोत. ह्या भाषेमध्ये खालील घटकांचा समावेश आहे:</p>
+            <ul>
+                <li><strong>संख्या:</strong> दशमांश बिंदूसहित संख्या, उदाहरणार्थ <code>42</code>, <code>42.5</code>.</li>
+                <li><strong>स्ट्रिंग:</strong> डबल उद्धरणांत असलेला मजकूर, उदाहरणार्थ <code>"नमस्कार, जग!"</code>.</li>
+                <li><strong>शब्द:</strong> जागा नसलेली अक्षरांची मालिका. उदाहरणार्थ <code>वाचा</code>, <code>दाखवा</code>, <code>+</code>. अशा शब्दांचा समावेश होऊ नये: <code>2a</code>, <code>"aa</code>.</li>
+            </ul>
+            <p>प्रत्येक प्रोग्राम म्हणजे जागा ने विभाजित घटकांची मालिका. हि भाषा पोस्टफिक्स स्वरूपात काम करते आणि सर्व मूल्ये स्टॅकमध्ये ठेवते. संख्या किंवा स्ट्रिंग स्टॅकमध्ये ढकलली जातात. शब्द म्हणजे क्रिया, जे स्टॅकमधील घटक pop करून निकाल पुन्हा push करतात.</p>
+            <p>उदाहरणार्थ, <code>2 3 + दाखवा</code> हा प्रोग्राम स्क्रीनवर <code>5</code> छापतो.</p>
+            <pre><code>2 3 + दाखवा</code></pre>
+            <p>दुसर्‍या उदाहरणात दोन संख्या वाचून त्यांची बेरीज छापली जाते:</p>
+            <pre><code>वाचा वाचा + दाखवा</code></pre>
+            <p>प्रत्येक k-ary क्रियेमध्ये, स्टॅकचा टॉप घटक शेवटचा арг्युमेंट आणि त्याखालील दुसरा argument असतो.</p>
+            <pre><code>10 2 / दाखवा</code></pre>
+            <p>स्टॅक S मध्ये x y ... असे घटक असतात, जिथे x हा टॉप घटक आहे.</p>
+        </section>
+
+        <section id="language-philosophy">
+            <h2>भाषेची तत्वे आणि मॉडेल</h2>
+            <ul>
+                <li><strong>स्टॅक-केंद्रित:</strong> सर्व मूल्ये (संख्या, स्ट्रिंग, बूल, सूची आणि चिन्हे) स्टॅकमध्ये साठवली जातात. क्रिया pop करून आणि पुन्हा push करून निकाल प्राप्त करतात.</li>
+                <li><strong>सुलभ वाक्यरचना:</strong> आज्ञा आणि प्रक्रियांचा अर्थ त्यांच्या प्रकारावरून घेतला जातो.</li>
+                <li><strong>पोस्टफिक्स स्वरूप:</strong> क्रिया त्यांच्या ऑपरेन्ड्सनंतर येतात.</li>
+                <li><strong>प्रक्रियात्मक अंमलातरण:</strong> कोड ब्लॉक्स (साठवलेल्या प्रक्रियाः)  delimit करून नंतर execute केल्या जातात.</li>
+                <li><strong>विस्तारक्षमता:</strong> वापरकर्त्यांनी व्याख्या केलेल्या कार्य (उदा. <code>व्याख्या</code>) व वैश्विक चलांच्या मदतीने प्रोग्राम विकसित करता येतात.</li>
+            </ul>
+        </section>
+
+        <section id="lexical-structure">
+            <h2>शब्दरचना</h2>
+            <p>स्रोत मजकूर वाचून टोकनांची यादी तयार करण्यासाठी लेक्सर वापरला जातो. खालील टोकन प्रकार आहेत:</p>
+            <h3>संख्यात्मक टोकन:</h3>
+            <ul>
+                <li><strong>NumberToken:</strong> अंकीय मालिका (उदा. <code>42</code>).</li>
+                <li><strong>NegNumberToken:</strong> नकारात्मक पूर्णांक (उदा. <code>-42</code>).</li>
+                <li><strong>DecimalNumberToken:</strong> दशमांश संख्या (उदा. <code>3.14</code>).</li>
+                <li><strong>NegDecimalNumberToken:</strong> नकारात्मक दशमांश (उदा. <code>-3.14</code>).</li>
+            </ul>
+            <h3>स्ट्रिंग टोकन:</h3>
+            <ul>
+                <li><strong>StringToken:</strong> डबल उद्धरणांत असलेला मजकूर (उदा. <code>"नमस्कार"</code>). लेक्सर escaped उद्धरणांना परवानगी देतो.</li>
+            </ul>
+            <h3>बूल टोकन:</h3>
+            <ul>
+                <li><strong>BoolToken:</strong> <code>खरे</code> किंवा <code>खोटे</code> या शब्दांना ओळखतो.</li>
+            </ul>
+            <h3>चिन्ह टोकन:</h3>
+            <ul>
+                <li><strong>SymbolToken:</strong> एका सिंगल उद्धरणाद्वारे ओळखला जातो (उदा. <code>'चिन्ह</code>).</li>
+            </ul>
+            <h3>शब्द टोकन:</h3>
+            <ul>
+                <li><strong>WordToken:</strong> क्रिया, कार्यनावे किंवा राखीव शब्द.</li>
+            </ul>
+            <p>लेक्सर spacing आणि ओळींचे नियम तपासतो. उदाहरणार्थ, संख्या टोकननंतर space किंवा newline असणे आवश्यक आहे.</p>
+        </section>
+
+        <section id="syntax-parser">
+            <h2>वाक्यरचना आणि पार्सर अवलोकन</h2>
+            <p><strong>संगणक</strong> चा पार्सर टोकनांची यादी घेऊन recursive रीतीने पार्सिंग करतो. त्याचे आरंभीचे वर्णन खालीलप्रमाणे:</p>
+            <h3>प्रारंभिकरण:</h3>
+            <p>पार्सर टोकनांची यादी आणि वैकल्पिक तर्कांची (arguments) यादीने initialize केला जातो. तो खालील घटक राखतो:</p>
+            <ul>
+                <li><code>i</code> – टोकन यादीतील निर्देशांक</li>
+                <li><code>स्टॅक</code> – कार्यान्वयन स्टॅक</li>
+                <li><code>functions</code> आणि <code>variables</code> – वापरकर्त्यांनी व्याख्या केलेल्या कार्य आणि वैश्विक चलांसाठी वैश्विक शब्दकोश.</li>
+            </ul>
+            <h3>टोकन-प्रति-टोकन पार्सिंग</h3>
+            <p>पार्सर प्रत्येक टोकनवर loop करून:</p>
+            <ul>
+                <li><strong>लिटरल्स:</strong> संख्या, स्ट्रिंग आणि बूल स्टॅकमध्ये ढकलतो.</li>
+                <li><strong>शब्द टोकन:</strong> त्यांच्या <code>v</code> मूल्यावरून विविध क्रिया करतो – अंकगणित, इनपुट/आउटपुट, नियंत्रण प्रवाह, सूची हाताळणी व इ.</li>
+            </ul>
+            <h3>प्रक्रिया:</h3>
+            <p><code>[</code> आणि <code>]</code> किंवा <code>{</code> आणि <code>}</code> वापरून तयार केलेले कोड ब्लॉक्स (साठवलेल्या प्रक्रियाः) तयार करून नंतर recursive पार्सिंगमध्ये execute केले जातात.</p>
+            <h3>ऑपरेटर आणि कार्ये:</h3>
+            <p>जर टोकन कोणत्याही अंतर्गत क्रियेशी जुळत नसेल तर पार्सर वापरकर्त्यांनी व्याख्या केलेल्या कार्य किंवा चल शोधतो. सापडल्यास त्रुटी दाखवली जाते.</p>
+        </section>
+
+        <section id="data-types">
+            <h2>डेटा प्रकार</h2>
+            <p>संगणक खालील मूलभूत डेटा प्रकार समर्थन करतो:</p>
+            <ul>
+                <li><strong>संख्या:</strong> पूर्णांक (<code>42</code>, <code>-10</code>) आणि दशमांश (<code>3.14</code>, <code>-0.5</code>).</li>
+                <li><strong>स्ट्रिंग:</strong> डबल उद्धरणांत असलेली अक्षरे (उदा. <code>"नमस्कार"</code>).</li>
+                <li><strong>बूल:</strong> तर्कसंगत मूल्ये <code>खरे</code> आणि <code>खोटे</code> या शब्दांनी.</li>
+                <li><strong>सूची:</strong> चौकोस कोष्ठकांत साठवलेल्या मूल्यांची मालिका (उदा. <code>[1 2 "नमस्कार"]</code>).</li>
+                <li><strong>चिन्हे:</strong> सिंगल उद्धरणाद्वारे दर्शविलेले अद्वितीय ओळखपत्रे (उदा. <code>'नाव</code>).</li>
+                <li><strong>साठवलेल्या प्रक्रियाः</strong> <code>{</code> आणि <code>}</code> वापरून तयार केलेले कोड ब्लॉक्स.</li>
+            </ul>
+        </section>
+
+        <section id="built-in-operations">
+            <h2>अंतर्गत क्रिया</h2>
+            <p>संगणक खालील अंतर्गत शब्द विविध क्रियांसाठी पुरवतो.</p>
+        </section>
+
+        <section id="stack-manipulation">
+            <h3>स्टॅक हाताळणी</h3>
+            <ul>
+                <li><strong><code>काढा</code>:</strong> स्टॅकमधील टॉप घटक काढतो.</li>
+                <li><strong><code>नक्कल</code>:</strong> टॉप मूल्याची नक्कल करून पुन्हा स्टॅकमध्ये ढकलतो.</li>
+                <li><strong><code>फिरवा</code>:</strong> टॉप दोन घटकांची जागा बदलतो.</li>
+                <li><strong><code>जोडा</code>:</strong> दोन स्ट्रिंग्स एकत्र करून परिणामी स्ट्रिंग स्टॅकमध्ये ढकलतो.</li>
+            </ul>
+        </section>
+
+        <section id="arithmetic-operators">
+            <h3>अंकगणितीय ऑपरेटर</h3>
+            <ul>
+                <li><strong><code>+</code>:</strong> दोन संख्या pop करून बेरीज करतो.</li>
+                <li><strong><code>-</code>:</strong> दोन संख्या pop करून, टॉप घटक दुसऱ्यावरून वजा करतो.</li>
+                <li><strong><code>*</code>:</strong> दोन संख्यांचा गुणाकार करतो.</li>
+                <li><strong><code>/</code>:</strong> दोन संख्या pop करून विभाजित करतो (विभाजक शून्य नसावा).</li>
+                <li><strong><code>^</code>:</strong> दोन संख्या pop करून घातांक म्हणून उचलतो (अवैध परिस्थिती टाळतो).</li>
+            </ul>
+        </section>
+
+        <section id="boolean-operators">
+            <h3>बूलियन ऑपरेटर आणि तुलना</h3>
+            <h4>बूलियन लॉजिक:</h4>
+            <ul>
+                <li><strong><code>नकार</code>:</strong> एका बूल मूल्याचे उलटे करतो.</li>
+                <li><strong><code>आणि</code> व <code>किंवा</code>, <code>एक्सओआर</code>:</strong> दोन बूल्स pop करून संबंधित तर्कसंगत क्रिया करतात.</li>
+            </ul>
+            <h4>तुलना ऑपरेटर:</h4>
+            <ul>
+                <li><strong><code>=</code>:</strong> दोन संख्यांची समानता तपासतो.</li>
+                <li><strong><code>!=</code>:</strong> दोन संख्यांमध्ये असमानता तपासतो.</li>
+                <li><strong><code><</code>, <code>></code>, <code><=</code>, <code>>=</code>:</strong> तुलना करतात (काही टोकन्स उलट अर्थाने वापरले जातात).</li>
+            </ul>
+            <h4>स्ट्रिंग तुलना:</h4>
+            <ul>
+                <li><strong><code>s=</code> किंवा <code>स्ट्रिंग_समान</code>:</strong> दोन स्ट्रिंग समान आहेत का तपासते.</li>
+                <li><strong><code>s!=</code> किंवा <code>स्ट्रिंग_वेगळे</code>:</strong> दोन स्ट्रिंग असमान आहेत का तपासते.</li>
+            </ul>
+            <h4>लेक्सिकोग्राफिक तुलना:</h4>
+            <ul>
+                <li><strong><code>lex></code> किंवा <code>लेक्स_जास्त</code>, <code>lex<</code> किंवा <code>लेक्स_कमी</code>, <code>lex>=</code> किंवा <code>लेक्स_जास्त_किंवा_बरोबर</code>, <code>lex<=</code> किंवा <code>लेक्स_कमी_किंवा_बरोबर</code>:</strong> स्ट्रिंगचे वर्णक्रमानुसार तुलना करतात.</li>
+            </ul>
+            <h4>चिन्ह तुलना:</h4>
+            <ul>
+                <li><strong><code>चिन्ह_समान</code>:</strong> दोन चिन्हांची समानता तपासते.</li>
+                <li><strong><code>चिन्ह_आहे_का</code>:</strong> टॉपवरील मूल्य चिन्ह आहे का ते तपासते.</li>
+            </ul>
+        </section>
+
+        <section id="string-operations">
+            <h3>स्ट्रिंग क्रिया</h3>
+            <ul>
+                <li><strong><code>जोडा</code>:</strong> दोन स्ट्रिंग pop करून त्यांना एकत्र करून परिणामी स्ट्रिंग ढकलतो.</li>
+            </ul>
+        </section>
+
+        <section id="list-operations">
+            <h3>सूची हाताळणी</h3>
+            <h4>सूची निर्मिती आणि प्रवेश:</h4>
+            <ul>
+                <li><strong><code>लिस्ट</code>:</strong> सध्याच्या स्टॅकमधील सर्व मूल्य एका सूचीत रुपांतरित करते.</li>
+                <li><strong><code>लिस्ट_न</code>:</strong> एक पूर्णांक pop करून त्यानुसार त्या संख्येइतके घटक pop करून सूची तयार करते (सूची उलट करून ढकलली जाते).</li>
+                <li><strong><code>फैलवा</code>:</strong> एक सूची pop करून तिचे घटक स्टॅकमध्ये ढकलतो.</li>
+                <li><strong><code>एनथ</code>:</strong> एक पूर्णांक (क्रमांक) आणि एक सूची pop करून त्या क्रमांकावरील घटक ढकलतो.</li>
+                <li><strong><code>लांबी</code>:</strong> एक सूची pop करून त्याची लांबी ढकलतो.</li>
+            </ul>
+        </section>
+
+        <section id="i-o-operations">
+            <h3>इनपुट/आउटपुट क्रिया</h3>
+            <ul>
+                <li><strong><code>वाचा</code>:</strong> वापरकर्त्याकडून मूल्य वाचतो आणि त्याचे स्वरूप (संख्या, स्ट्रिंग, बूल) ओळखतो.</li>
+                <li><strong><code>दाखवा</code>:</strong> स्टॅकवरील टॉप घटक छापतो आणि नंतर काढतो.</li>
+                <li><strong><code>छापा</code>:</strong> <code>दाखवा</code> प्रमाणेच पण स्ट्रिंगसाठी उद्धरणांशिवाय.</li>
+            </ul>
+        </section>
+
+        <section id="control-flow">
+            <h2>नियंत्रण प्रवाह</h2>
+            <ul>
+                <li><strong>प्रक्रिया (कोड ब्लॉक्स):</strong>
+                    <p><code>[</code> आणि <code>]</code> किंवा <code>{</code> आणि <code>}</code> वापरून तयार केलेले कोड ब्लॉक्स साठवलेल्या प्रक्रियाः म्हणून ठेवली जातात व नंतर पार्सिंगमध्ये execute केली जातात.</p>
+                </li>
+                <li><strong><code>चला</code>:</strong>
+                    <p>स्टॅकमधील प्रक्रिया (सूची स्वरूपात) काढून नवीन पार्सर संदर्भात execute करतो व प्राप्त स्टॅकला सुसंगत करतो.</p>
+                </li>
+                <li><strong><code>जर</code>:</strong>
+                    <p>स्टॅकमध्ये तीन घटक (बूल शर्ती, then प्रक्रिया आणि else प्रक्रिया) अपेक्षित. शर्तीच्या निकालानुसार योग्य प्रक्रिया execute केली जाते.</p>
+                </li>
+                <li><strong><code>पुन्हा</code>:</strong>
+                    <p>एक पूर्णांक आणि एक प्रक्रिया काढून ती प्रक्रिया दिलेल्या संख्येइतक्या वेळा execute करते.</p>
+                </li>
+                <li><strong><code>जेव्हा</code>:</strong>
+                    <p>दोन प्रक्रिया काढल्या जातात – एक शर्तीची आणि एक शरीराची. शर्तीची प्रक्रिया execute केली जाते आणि जर ती सत्य असेल तर शरीर प्रक्रिया execute होते, अन्यथा loop थांबते.</p>
+                </li>
+                <li><strong><code>सदैव</code>:</strong>
+                    <p>एक प्रक्रिया काढून अनंत काळासाठी execute करते. (जास्त काळ चालू असल्याने सावधगिरीने वापरा!)</p>
+                </li>
+                <li><strong><code>प्रत्येक</code>:</strong>
+                    <p>एक सूची आणि एक प्रक्रिया काढून त्या सूचीतल्या प्रत्येक घटकासाठी प्रक्रिया execute करते आणि तो घटक स्टॅकमध्ये ढकलते.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="function-definition">
+            <h2>फंक्शन व्याख्या व कॉल</h2>
+            <ul>
+                <li><strong><code>व्याख्या</code>:</strong>
+                    <p>नवीन फंक्शन क्रियाशील घोषित करण्यासाठी. हा एक चिन्ह (कार्याचे नाव) आणि एक प्रक्रिया (कोड ब्लॉक म्हणून सूची) अपेक्षित करतो व वैश्विक शब्दकोशात साठवतो.</p>
+                </li>
+                <li><strong>कॉल:</strong>
+                    <p>जर शब्द टोकन वापरकर्त्यांनी व्याख्या केलेल्या कार्याशी जुळला तर त्याची संबंधित प्रक्रिया execute केली जाते. त्या वेळी विद्यमान स्टॅक, कार्य आणि चल कायम ठेवले जातात.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="type-querying">
+            <h2>प्रकार तपासणी</h2>
+            <ul>
+                <li><strong><code>नंबर_आहे_का</code>:</strong>
+                    <p>स्टॅकमधील टॉप मूल्य संख्या आहे का तपासते.</p>
+                </li>
+                <li><strong><code>लिस्ट_आहे_का</code>:</strong>
+                    <p>स्टॅकमधील मूल्य सूची आहे का तपासते.</p>
+                </li>
+                <li><strong><code>स्ट्रिंग_आहे_का</code>:</strong>
+                    <p>स्टॅकवरील मूल्य स्ट्रिंग आहे का तपासते.</p>
+                </li>
+                <li><strong><code>बूल_आहे_का</code>:</strong>
+                    <p>स्टॅकमधील मूल्य बूल आहे का तपासते.</p>
+                </li>
+                <li><strong><code>चिन्ह_आहे_का</code>:</strong>
+                    <p>स्टॅकवरील टॉप मूल्य चिन्ह (SymbolToken) आहे का तपासते.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="symbols">
+            <h2>चिन्हे</h2>
+            <p>चिन्ह हा स्पेस नसलेल्या अक्षरांची मालिका असलेला नवीन डेटा प्रकार आहे. लेक्सरने चिन्हे एका सिंगल उद्धरणाद्वारे ओळखले जातात. दोन चिन्हे फक्त समान अक्षरांची मालिका असतील तरच समान मानली जातात.</p>
+            <h3>उदाहरण:</h3>
+            <pre><code>'हॅलो 'वर्ल्ड 'निःशब्द</code></pre>
+            <h3>चिन्ह क्रिया:</h3>
+            <ul>
+                <li><strong><code>चिन्ह_आहे_का</code>:</strong> टॉपवरील मूल्य चिन्ह आहे का तपासते.</li>
+                <li><strong><code>चिन्ह_समान</code>:</strong> टॉपमधील दोन चिन्हांची समानता तपासून ते काढते.</li>
+            </ul>
+        </section>
+
+        <section id="command-line-arguments">
+            <h2>कमान्-लाइन तर्क</h2>
+            <p><code>अतिरिक्त_तर्क</code> या शब्दाद्वारे कमान्-लाइन तर्कांची सूची स्टॅकमध्ये ढकलली जाते. पहिला घटक कार्यान्वयन फाइलचे नाव आणि उर्वरित घटक तर्क म्हणून ओळखले जातात.</p>
+            <h3>उदाहरण (सैद्धांतिक):</h3>
+            <p>जर <code>echo.f</code> स्क्रिप्ट <code>./run.sh echo.f "नमस्कार, जग"</code> या स्वरूपात चालवली तर, <code>अतिरिक्त_तर्क</code> मधून <code>["echo.f", "नमस्कार, जग"]</code> ही सूची स्टॅकमध्ये ढकलली जाते.</p>
+            <h3>उदाहरण: <code>yes</code> आदेशाची अंमलबजावणी</h3>
+            <pre><code>{ अतिरिक्त_तर्क लांबी 1 > } { अतिरिक्त_तर्क 1 nth } { "y" } जर { नक्कल छापा } सदैव</code></pre>
+            <p>ही स्क्रिप्ट तपासते की कमान्-लाइन तर्क कमीत कमी आहेत का. असल्यास, दुसरा घटक घेतला जातो आणि तो अनंत काळासाठी छापला जातो; अन्यथा, "y" अनंत काळासाठी छापला जातो.</p>
+        </section>
+
+        <section id="error-handling">
+            <h2>त्रुटी हाताळणी</h2>
+            <p>पार्सरमध्ये अट (assertions) चा वापर करून त्रुटी हाताळल्या जातात:</p>
+            <ul>
+                <li><strong>रिक्त स्टॅक:</strong>
+                    <p>ज्या क्रियांकरिता एक किंवा अधिक घटकांची आवश्यकता असते, त्याआधी स्टॅक तपासला जातो. रिक्त स्टॅक आढळल्यास "रिक्त स्टॅक" अशी त्रुटी दाखवली जाते.</p>
+                </li>
+                <li><strong>अवैध ऑपरेन्ड प्रकार:</strong>
+                    <p>प्रत्येक क्रिया पुन्हा तपासते की योग्य प्रकारचे ऑपरेन्ड उपलब्ध आहेत (उदा. संख्या, सूची, बूल). नसल्यास "अवैध ऑपरेन्ड प्रकार" अशी त्रुटी दाखवली जाते.</p>
+                </li>
+                <li><strong>किनारी अटी:</strong>
+                    <p>विभाजन आणि घातांक यांसारख्या क्रियांमध्ये शून्यावर विभागणी किंवा अविभाज्य नकारात्मक घातांक यांची तपासणी केली जाते.</p>
+                </li>
+            </ul>
+            <p>त्रुटी त्वरित दाखवल्या जातात ज्यामुळे डीबगिंग करणे सोपे होते.</p>
+        </section>
+
+        <section id="extending-language">
+            <h2>भाषा विस्तार</h2>
+            <p>संगणक टोकन-आधारित डिझाइनचा वापर करतो व पार्सर सहज विस्तारीत केला जाऊ शकतो:</p>
+            <ul>
+                <li><strong>वापरकर्त्यांनी व्याख्या केलेली कार्ये:</strong>
+                    <p><code>व्याख्या</code> वापरून runtime मध्ये नवीन कार्ये जोडता येतात.</p>
+                </li>
+                <li><strong>वैश्विक चल:</strong>
+                    <p>चल वैश्विक शब्दकोशात साठवले जातात ज्यामुळे क्रियांदरम्यान स्थायी स्थिती राखता येते.</p>
+                </li>
+                <li><strong>कस्टम प्रक्रिया:</strong>
+                    <p>भाषेत नवीन आज्ञा सहजपणे जोडता येतात. पार्सरमध्ये नवे टोकन किंवा संरचना समाविष्ट करणे सोपे आहे.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="example-programs">
+            <h2>उदाहरण प्रोग्राम</h2>
+            <h3>सोपे अंकगणित</h3>
+            <div class="example-code">
+                <code>3 4 + दाखवा</code>
+            </div>
+            <p class="explanation">स्पष्टीकरण:</p>
+            <ul>
+                <li><code>3</code> आणि <code>4</code> स्टॅकमध्ये ढकलले जातात.</li>
+                <li><code>+</code> द्वारे दोन संख्या काढून त्यांची बेरीज केली जाते व निकाल पुन्हा ढकलला जातो.</li>
+                <li><code>दाखवा</code> आदेशाने निकाल स्क्रीनवर छापला जातो.</li>
+            </ul>
+            <h3>सूची निर्मिती आणि पुनरावृत्ती</h3>
+            <div class="example-code">
+                <code>1 2 3 लिस्ट दाखवा</code>
+            </div>
+            <p class="explanation">स्पष्टीकरण:</p>
+            <ul>
+                <li><code>1</code>, <code>2</code>, <code>3</code> या मूल्ये स्टॅकमध्ये ढकलली जातात.</li>
+                <li><code>लिस्ट</code> आदेशाने स्टॅकमधील सर्व मूल्ये एका सूचीमध्ये रुपांतरित केली जातात.</li>
+                <li><code>दाखवा</code> आदेशाने सूची स्क्रीनवर प्रदर्शित केली जाते.</li>
+            </ul>
+            <h3>शर्ती आणि लूप</h3>
+            <div class="example-code">
+                <code>खरे [ "_then शाखा अंमलात" दाखवा ] [ "else शाखा अंमलात" दाखवा ] जर</code>
+            </div>
+            <p class="explanation">स्पष्टीकरण:</p>
+            <ul>
+                <li>एक बूल मूल्य <code>खरे</code> आणि दोन प्रक्रिया (then आणि else) स्टॅकमध्ये ढकलल्या जातात.</li>
+                <li><code>जर</code> आदेशाने शर्तीच्या निकालानुसार योग्य प्रक्रिया execute केली जाते.</li>
+            </ul>
+            <h3>फॅक्टोरियल गणना</h3>
+            <div class="example-code">
+                <code>{ { नक्कल 0 = } { काढा 1 } { नक्कल घटवा 'fact कॉल * } जर } 'fact व्याख्या
+5 fact छापा</code>
+            </div>
+            <p class="explanation">स्पष्टीकरण:</p>
+            <ul>
+                <li>recursive फॅक्टोरियल कार्याची व्याख्या केली जाते.</li>
+                <li>5 हा तर्क पाठवून कार्य कॉल केले जाते.</li>
+                <li>निकाल (120) स्क्रीनवर छापला जातो.</li>
+            </ul>
+        </section>
+
+        <section id="reserved-words">
+            <h2>प्रतिबंधित शब्द</h2>
+            <p>संगणक भाषेत काही अंतर्गत (अंतर्गत) शब्द राखीव आहेत. या शब्दांचा वापर वापरकर्त्यांनी व्याख्या केलेल्या कार्य किंवा चल म्हणून करता येत नाही. उदाहरणार्थ, <code>+</code> ला पुन्हा व्याख्या करणे परवानगी नाही कारण त्याचा उपयोग अंतर्गत बेरीज क्रियेशी केला जातो.</p>
+            <ul>
+                <li><strong>स्टॅक क्रिया:</strong><br>
+                    <code>काढा</code>, <code>नक्कल</code>, <code>फिरवा</code>, <code>जोडा</code>
+                </li>
+                <li><strong>अंकगणितीय क्रिया:</strong><br>
+                    <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>
+                </li>
+                <li><strong>बूलियन व तुलना क्रिया:</strong><br>
+                    <code>=</code>, <code>!=</code>, <code><</code>, <code>></code>, <code><=</code>, <code>>=</code>, <code>नकार</code>, <code>आणि</code>, <code>किंवा</code>, <code>एक्सओआर</code>,
+                    <code>b=</code>, <code>b!=</code>, <code>s=</code>, <code>s!=</code>, <code>lex></code>, <code>lex<</code>,
+                    <code>lex>=</code>, <code>lex<=</code>
+                </li>
+                <li><strong>इनपुट/आउटपुट क्रिया:</strong><br>
+                    <code>वाचा</code>, <code>दाखवा</code>, <code>छापा</code>
+                </li>
+                <li><strong>प्रक्रिया सीमारेषा:</strong><br>
+                    <code>[</code>, <code>]</code>, <code>{</code>, <code>}</code>
+                </li>
+                <li><strong>सूची क्रिया:</strong><br>
+                    <code>लिस्ट</code>, <code>लिस्ट_न</code>, <code>फैलवा</code>, <code>एनथ</code>, <code>लांबी</code>
+                </li>
+                <li><strong>नियंत्रण प्रवाह शब्द:</strong><br>
+                    <code>जर</code>, <code>चला</code>, <code>पुन्हा</code>, <code>जेव्हा</code>, <code>सदैव</code>, <code>प्रत्येक</code>
+                </li>
+                <li><strong>फंक्शन व्याख्या:</strong><br>
+                    <code>व्याख्या</code>
+                </li>
+                <li><strong>वाढ/घट व प्रकार तपासणी:</strong><br>
+                    <code>वाढवा</code>, <code>घटवा</code>, <code>नंबर_आहे_का</code>, <code>लिस्ट_आहे_का</code>, <code>स्ट्रिंग_आहे_का</code>, <code>बूल_आहे_का</code>, <code>चिन्ह_आहे_का</code>, <code>चिन्ह_समान</code>
+                </li>
+                <li><strong>बूल आणि चिन्ह स्थिर मूल्ये:</strong><br>
+                    <code>खरे</code>, <code>खोटे</code>
+                </li>
+                <li><strong>कमान्-लाइन तर्क:</strong><br>
+                    <code>अतिरिक्त_तर्क</code>
+                </li>
+            </ul>
+            <p class="important"><strong>महत्वाचे:</strong><br>
+                हे शब्द पार्सर (parser_dn.py आणि parser.py) आणि लेक्सर (lexer_dn.py आणि lexer.py) मध्ये हार्डकोडेड आहेत. वापरकर्त्यांनी व्याख्या केलेली नावे वापरल्यास त्रुटी उद्भवू शकतात.
+            </p>
+        </section>
+
+        <section id="conclusion">
+            <h2>निष्कर्ष</h2>
+            <p>संगणक ही एक मिनिमल आणि अभिव्यक्तीक्षम स्टॅक-आधारित भाषा आहे, जी प्रोग्रामरना स्टॅक क्रियांच्या दृष्टीने विचार करण्यास प्रवृत्त करते. तिच्या अंतर्गत क्रियांमध्ये अंकगणित, इनपुट/आउटपुट, सूची हाताळणी, नियंत्रण प्रवाह, चिन्हे आणि फंक्शन व्याख्या यांचा समावेश आहे. वापरकर्त्यांनी व्याख्या केलेली कार्ये आणि मजबूत त्रुटी हाताळणीमुळे ही भाषा शिक्षणासाठी आणि अधिक गुंतागुंतीच्या कार्यांसाठी उत्कृष्ट आधार आहे.</p>
+            <p>नवशिक्यांना सूक्ष्म कोड अंश वापरुन प्रयोग करण्याचा सल्ला देण्यात येतो, ज्यामुळे स्टॅक मॉडेलची चांगली ओळख होते. लेक्सर व पार्सरच्या विभागणीमुळे हि भाषा सहज विस्तारीत केली जाऊ शकते.</p>
+        </section>
+    </main>
+</body>
+
+</html>

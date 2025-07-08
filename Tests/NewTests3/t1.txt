@@ -1,0 +1,37 @@
+1 is-number? put
+-1 is-number? put
+0.1 is-number? put
+-0.1 is-number? put
+"jai" is-number? put
+[ -1 true ] is-number? put
+true is-number? put
+
+1 is-bool? put
+-1 is-bool? put
+0.1 is-bool? put
+-0.1 is-bool? put
+"jai" is-bool? put
+[ -1 true ] is-bool? put
+true is-bool? put
+false is-bool? put
+
+
+1 is-list? put
+-1 is-list? put
+0.1 is-list? put
+-0.1 is-list? put
+"jai" is-list? put
+[ -1 true ] is-list? put
+true is-list? put
+false is-list? put
+
+
+
+1 is-string? put
+-1 is-string? put
+0.1 is-string? put
+-0.1 is-string? put
+"jai" is-string? put
+[ -1 true ] is-string? put
+true is-string? put
+false is-string? put
